@@ -1,4 +1,4 @@
-# Coupled feature learning for multimodal medical image fusion
+# Coupled Feature Learning for Multimodal Medical Image Fusion
 
 reference : FG Veshki, N Ouzir, SA Vorobyov, E Ollila, Coupled feature learning for multimodal medical image fusion, 2021, arxiv.org
 
