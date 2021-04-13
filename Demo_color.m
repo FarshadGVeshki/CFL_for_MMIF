@@ -51,18 +51,6 @@ subplot 133
 imshow(IF,[])
 xlabel('I^F')
 
-%%  dictionary atoms
-ID1 = displayPatches(D1);
-ID2 = displayPatches(D2);
-
-figure(37)
-subplot 121
-imshow(ID1)
-xlabel('D1')
-subplot 122
-imshow(ID2)
-xlabel('D2')
-
 
 
 
