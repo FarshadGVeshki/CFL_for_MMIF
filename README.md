@@ -1,9 +1,9 @@
-# Coupled Feature Learning for Multimodal Medical Image Fusion
+Coupled feature learning for multimodal medical image fusion
 
 reference : FG Veshki, N Ouzir, SA Vorobyov, E Ollila, Coupled feature learning for multimodal medical image fusion, 2021, arxiv.org
 
 %
-Run the script files "Demo_gray.m" and "Demo_color.m".
+Run the script files "Demo_gray.m" and "Demo_color.m" and "Demo_IV".
 (change the fusion modalities in "fusion problem" tab)
 
 
