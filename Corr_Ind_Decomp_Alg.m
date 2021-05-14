@@ -62,8 +62,8 @@ function [Z1,Z2,E1,E2,D1,D2,A1,A2] = Corr_Ind_Decomp_Alg(X1,X2,D1,D2,opts)
 % np: number of columns
 
 E1 = zeros(m,np); E2 = E1; % independent components
-delta = 1e-7; % threshold for minimum considerable variance (for stabilization)
-Eps = 1e-4; % approxiation accuracy threshold
+delta = 1e-4; % threshold for minimum considerable variance (for stabilization)
+Eps = 5e-4; % approxiation accuracy threshold
 rho = opts.rho; % penalty parameter
 
 k_seq = round(linspace(1,opts.k,opts.Numiters)); % gradual increasing of sparsity (warm start)
@@ -86,7 +86,7 @@ for t = 1:opts.Numiters
         [D1,D2,A1,A2] = SCDL(X1-E1,X2-E2,D1,D2,k_seq(t),Eps,opts.DLiters,1);
         
     else                        % A update only
-        [A1,A2] = SOMP(X1-E1,X2-E2,D1,D2,k_seq(t),Eps);
+        [A1,A2] = SOMP_C(X1-E1,X2-E2,D1,D2,k_seq(t),Eps);
     end
     
     Z1 = D1*A1;

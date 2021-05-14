@@ -16,7 +16,7 @@ fusion_mods = 'T2-PET';
 
 opts.k = 5; % maximum nnonzero entries in sparse vectors
 opts.rho = 10; % optimization penalty term
-opts.plot = true; % plot decomposition components
+opts.plot = false; % plot decomposition components
 
 %% loading input images
 
@@ -28,7 +28,7 @@ if size(I2,3)>1, I2 = rgb2gray(I2); end
 
 %% performing decomposition and fusion
 
-n = 16; b = 8;
+n = 32; b = 8;
 D0 = DCT(n,b);  % initializing the dictionaries with DCT matrices
 
 tic;
@@ -50,6 +50,18 @@ xlabel('I_2')
 subplot 133
 imshow(IF,[])
 xlabel('I^F')
+
+%%  dictionary atoms
+% ID1 = displayPatches(D1);
+% ID2 = displayPatches(D2);
+% 
+% figure(37)
+% subplot 121
+% imshow(ID1)
+% xlabel('D1')
+% subplot 122
+% imshow(ID2)
+% xlabel('D2')
 
 
 

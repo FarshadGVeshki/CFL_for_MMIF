@@ -1,4 +1,4 @@
-%%% greyscale-greyscale mutimodal image fusion (anatomical-anatomical)
+%%% greyscale-greyscale mutimodal image fusion (Infrared - Visible)
 
 clear
 % clc
@@ -6,8 +6,6 @@ addpath('utilities');
 
 %% fusion problem
 
-fusion_mods = 'CT-T2';
-% fusion_mods = 'T1-T2';
 
 %% parameters
 
@@ -17,9 +15,9 @@ opts.plot = false; % plot decomposition components
 
 %% loading input images
 
-I1 = double(imread(['Source_Images\' fusion_mods '_A.png']))/255;
+I1 = imresize(double(imread('I-V\IR5.png'))/255,1);
 if size(I1,3)>1, I1 = rgb2gray(I1); end
-I2 = double(imread(['Source_Images\' fusion_mods '_B.png']))/255;
+I2 = imresize(double(imread('I-V\VIS5.png'))/255,1);
 if size(I2,3)>1, I2 = rgb2gray(I2); end
 
 %% performing decomposition and fusion
@@ -35,7 +33,7 @@ toc % runtime
 %% results
 
 F = uint8(IF*255);
-imwrite(F,['Results\' fusion_mods '_F.png']);
+imwrite(F,['Results\IF2_pro.png']);
 
 figure(23)
 subplot 131
