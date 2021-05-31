@@ -62,7 +62,7 @@ function [Z1,Z2,E1,E2,D1,D2,A1,A2] = Corr_Ind_Decomp_Alg(X1,X2,D1,D2,opts)
 % np: number of columns
 
 E1 = zeros(m,np); E2 = E1; % independent components
-delta = 1e-4; % threshold for minimum considerable variance (for stabilization)
+delta = 1e-6; % threshold for minimum considerable variance (for stabilization)
 Eps = 5e-4; % approxiation accuracy threshold
 rho = opts.rho; % penalty parameter
 
@@ -95,13 +95,12 @@ for t = 1:opts.Numiters
     %----------------------------------------------------------------------
     %                              E update
     
-    if t==1 % in the beginning of teh first iteration the solution is trivial
-        E1 = X1-Z1;
-        E2 = X2-Z2;
-    end
+
     
     X1_ = X1-Z1;
     X2_ = X2-Z2;
+    E1 = X1_;
+    E2 = X2_;
     
     for Eit = 1:t
         
@@ -111,18 +110,13 @@ for t = 1:opts.Numiters
         V2 = var(E2,1);
         
         V12 = V1.*V2;
-        V12(V12<delta) = delta;
         
-        C1 = 2*((E2-M2).^2)./(V12);
-        E1 = (C1.*M1 + rho*(X1_))./(C1 + rho);
+        inds = V12>delta;
+        C1 = ((E2(:,inds)-M2(:,inds)).^2)./(V12(:,inds));
+        E1(:,inds) = (C1.*M1(:,inds) + rho*(X1_(:,inds)))./(C1 + rho);
         
-        M1 = mean(E1,1);
-        V1 = var(E1,1);
-        V12 = V1.*V2;
-        V12(V12<delta) = delta;
-        
-        C2 = 2*((E1-M1).^2)./(V12);
-        E2 = (C2.*M2 + rho*(X2_))./(C2 + rho);
+        C2 = ((E1(:,inds)-M1(:,inds)).^2)./(V12(:,inds));
+        E2(:,inds) = (C2.*M2(:,inds) + rho*(X2_(:,inds)))./(C2 + rho);
         
     end
     
