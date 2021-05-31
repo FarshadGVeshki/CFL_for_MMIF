@@ -166,6 +166,6 @@ f2val = norm(X2-Z2-E2,'fro')^2/N; % second approximation norm
 V1 = var(E1,1);
 V2 = var(E2,1);
 V12 = V1.*V2;
-V12(V12<delta)=delta;
-f3val = norm(((E1- mean(E1)).*(E2-mean(E2)))./sqrt(V12),'fro')^2/N;
+inds = V12>delta;
+f3val = norm(((E1(:,inds)- mean(E1(:,inds))).*(E2(:,inds)-mean(E2(:,inds))))./sqrt(V12(:,inds)),'fro')^2/sum(inds(:));
 end
