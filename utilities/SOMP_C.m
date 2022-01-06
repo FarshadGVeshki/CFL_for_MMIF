@@ -32,7 +32,7 @@ for i=1:np
     a2 = [];
     while k<K && res_norm1>EPS && res_norm2>EPS
         k = k+1;
-        [~,ind] = max(abs(res1'*D1)+abs(res2'*D2));
+        [~,ind] = max(abs(res1'*D1).^2+(res2'*D2).^2);
         IND(k) = ind;
         inds = IND(1:k);
 
