@@ -1,6 +1,6 @@
 function [A1,A2] = SOMP_C(X1,X2,D1,D2,K,Eps)
 % coupled SOMP (supp(A1) = supp(A2) with coupled dictionaries)
-% Only atom slection is done jointly:  [~,ind] = max(abs(res1'*D1)+abs(res2'*D2));
+% Only atom slection is done jointly:  [~,ind] = max((res1'*D1).^2+(res2'*D2).^2);
 % Coefficients are updated separately:   a1 = (D1(:,IND))\x1; and  a2 = (D2(:,IND))\x2;
 
 X1 = single(X1);
