@@ -11,4 +11,4 @@ The codes for extraction and reconstuction of image patches and visualization of
 (The files "mexExtractPatches.m", "mexCombinePatches.m" and "displayPatches.m" in the folder "utilities".)
 
 %
-reference : FG Veshki, N Ouzir, SA Vorobyov, E Ollila, Coupled feature learning for multimodal medical image fusion, 2021, arxiv.org
+reference : FG Veshki, N Ouzir, SA Vorobyov, E Ollila, Multimodal image fusion via coupled feature learning, 2022, signal processing.
